@@ -1,0 +1,442 @@
+<!doctype html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>2025 Tech Summit | 年度開發者大會</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+    <script type="module" src="./js/main.js"></script>
+
+    <style>
+      :root{
+        --primary-500: #0d6efd;
+        --primary-700: #6610f2;
+        --primary-gradient: linear-gradient(135deg, var(--primary-500) 0%, var(--primary-700) 100%);
+        --card-radius: 14px;
+      }
+
+      /* 基本 */
+      html,body{height:100%}
+      body {
+        font-family: 'Noto Sans TC', sans-serif;
+        background: linear-gradient(180deg,#f6f7fb 0%, #eef2f7 100%);
+        color: #212529;
+        -webkit-font-smoothing:antialiased;
+        -moz-osx-font-smoothing:grayscale;
+      }
+
+      /* 導覽列 */
+      .navbar {
+        background: rgba(255,255,255,0.9);
+        box-shadow: 0 4px 18px rgba(11, 15, 30, 0.05);
+      }
+      .navbar .navbar-brand { color: #0b1a3a; }
+      .nav-link { color: #2b3a4a !important; }
+      .nav-link:hover { color: var(--primary-500) !important; }
+
+      /* Hero */
+      .hero-section {
+        background:
+          linear-gradient(180deg, rgba(7,11,23,0.65) 0%, rgba(7,11,23,0.45) 60%),
+          url('https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=2070&auto=format&fit=crop') center/cover no-repeat;
+        color: #fff;
+        min-height: 72vh;
+        display: flex;
+        align-items: center;
+        position: relative;
+        padding: 6rem 0;
+      }
+      @media (max-width: 768px){
+        .hero-section { background-attachment: scroll; padding: 4rem 0; }
+        .hero-section .display-2 { font-size: 2rem; }
+      }
+      .hero-inner {
+        backdrop-filter: blur(2px);
+        background: linear-gradient(90deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+        padding: 2.5rem;
+        border-radius: 12px;
+      }
+
+      .display-2 { font-weight:700; letter-spacing: -1px; }
+
+      .btn-gradient {
+        background: var(--primary-gradient);
+        border: none;
+        color: #fff;
+        box-shadow: 0 6px 18px rgba(13,110,253,0.18);
+      }
+      .btn-gradient:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(13,110,253,0.22); }
+
+      /* 區塊標題 */
+      .section-title {
+        position: relative;
+        display: inline-block;
+        padding-bottom: 12px;
+        margin-bottom: 1.5rem;
+        font-weight:700;
+        color: #0b1a3a;
+      }
+      .section-title::after {
+        content: '';
+        position: absolute;
+        width: 56px;
+        height: 4px;
+        background: var(--primary-gradient);
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        border-radius: 3px;
+      }
+
+      /* 卡片 */
+      .agenda-card, .card {
+        border-radius: var(--card-radius);
+      }
+      .agenda-card { background: #fff; color: #111827; }
+      .agenda-card .card-title { color: #0b1a3a; }
+
+      .agenda-icon {
+        font-size: 1.8rem;
+        background: -webkit-linear-gradient(45deg, var(--primary-500), var(--primary-700));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      /* 講者區 */
+      .speakers-section {
+        padding: 80px 0;
+      }
+      .speaker-card {
+        background: #0b1a3a;
+        color: #fff;
+        border-radius: 16px;
+        padding: 2.5rem;
+      }
+      .speaker-img {
+        width: 140px;
+        height: 140px;
+        object-fit: cover;
+        border-radius: 50%;
+        border: 3px solid rgba(255,255,255,0.12);
+      }
+
+      /* 資訊列表 */
+      .info-list-item {
+        display:flex;
+        gap:1rem;
+        padding:1.25rem;
+        border-radius:10px;
+        background:#fff;
+        align-items:flex-start;
+        box-shadow: 0 6px 18px rgba(16,24,40,0.04);
+      }
+      .info-icon-wrapper{
+        min-width:52px;height:52px;border-radius:12px;
+        display:flex;align-items:center;justify-content:center;
+        background: linear-gradient(180deg, rgba(13,110,253,0.06), rgba(102,16,242,0.04));
+        color: var(--primary-500); font-size:1.25rem;
+      }
+
+      /* 表單 */
+      .form-control {
+        border-radius: 12px;
+        box-shadow: none;
+      }
+
+      footer{
+        background: transparent;
+        color:#394459;
+        padding:3.5rem 0;
+      }
+      footer a { color: #495b6b; text-decoration: none; }
+      footer a:hover { color: var(--primary-500); }
+
+      /* 可讀性微調 */
+      .text-muted { color: #6c7a89 !important; }
+      .badge-light { background:#fff; color:#0b1a3a; }
+      .ratio iframe { border:0; }
+    </style>
+  </head>
+  <body>
+
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3">
+      <div class="container">
+        <a class="navbar-brand fw-bold fs-4" href="#">
+          <i class="bi bi-cpu-fill me-2"></i>Tech Summit
+        </a>
+        <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto align-items-center">
+            <li class="nav-item"><a class="nav-link px-3" href="#agenda">議程</a></li>
+            <li class="nav-item"><a class="nav-link px-3" href="#speakers">講者</a></li>
+            <li class="nav-item"><a class="nav-link px-3" href="#info">資訊</a></li>
+            <li class="nav-item ms-lg-2">
+              <a class="btn btn-gradient rounded-pill px-4" href="#contact">立即報名</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <header id="hero" class="hero-section">
+      <div class="container">
+        <div class="hero-inner text-center mx-auto" data-aos="fade-up" style="max-width:900px;">
+          <span class="badge bg-white text-primary rounded-pill px-3 py-2 mb-3 fw-bold fs-6">
+            <i class="bi bi-calendar-event me-1"></i> 2025.12.20
+          </span>
+          <h1 class="display-2 fw-bold mb-3">定義未來的技術浪潮</h1>
+          <p class="lead mb-4 fs-5 text-white-75">
+            加入亞洲最大的開發者盛會，探索 AI、Web 3.0 與雲端架構的全新邊界。
+          </p>
+          <div class="d-flex justify-content-center gap-3 flex-wrap">
+            <a href="#agenda" class="btn btn-gradient btn-lg px-5 py-3 rounded-pill">瀏覽議程</a>
+            <a href="#video" class="btn btn-outline-light btn-lg px-4 py-3 rounded-pill">
+              <i class="bi bi-play-circle me-2"></i>觀看預告
+            </a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section id="agenda" class="section-padding py-5">
+        <div class="container">
+          <div class="text-center mb-4" data-aos="fade-down">
+            <h2 class="section-title h1">精彩議程</h2>
+            <p class="text-muted">掌握趨勢，激發靈感</p>
+          </div>
+
+          <div class="row g-4 mt-2">
+            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+              <div class="card h-100 agenda-card shadow-sm p-3">
+                <div class="card-body d-flex flex-column">
+                  <div class="d-flex justify-content-between align-items-start mb-3">
+                    <i class="bi bi-lightning-charge-fill agenda-icon"></i>
+                    <span class="badge bg-light text-dark border">09:00 - 10:00</span>
+                  </div>
+                  <h4 class="card-title fw-bold mb-2">Keynote: 前端新紀元</h4>
+                  <p class="card-text text-muted small">探討 2025 年網頁技術的演進，解析 Vite 與 TurboPack 的生態競爭與發展。</p>
+                  <div class="mt-auto">
+                    <a href="#" class="text-decoration-none fw-bold">閱讀更多 <i class="bi bi-arrow-right"></i></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+              <div class="card h-100 agenda-card shadow-sm p-3">
+                <div class="card-body d-flex flex-column">
+                  <div class="d-flex justify-content-between align-items-start mb-3">
+                    <i class="bi bi-phone-fill agenda-icon"></i>
+                    <span class="badge bg-light text-dark border">10:30 - 12:00</span>
+                  </div>
+                  <h4 class="card-title fw-bold mb-2">RWD 極致體驗</h4>
+                  <p class="card-text text-muted small">Bootstrap 5 實戰技巧，如何利用 Utility API 客製設計系統，打造跨裝置體驗。</p>
+                  <div class="mt-auto">
+                    <a href="#" class="text-decoration-none fw-bold">閱讀更多 <i class="bi bi-arrow-right"></i></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+              <div class="card h-100 agenda-card shadow-sm p-3">
+                <div class="card-body d-flex flex-column">
+                  <div class="d-flex justify-content-between align-items-start mb-3">
+                    <i class="bi bi-palette-fill agenda-icon"></i>
+                    <span class="badge bg-light text-dark border">13:30 - 15:00</span>
+                  </div>
+                  <h4 class="card-title fw-bold mb-2">互動設計美學</h4>
+                  <p class="card-text text-muted small">無需大量 JS，使用 CSS 變數與 AOS 打造令人驚艷的微互動。</p>
+                  <div class="mt-auto">
+                    <a href="#" class="text-decoration-none fw-bold">閱讀更多 <i class="bi bi-arrow-right"></i></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="speakers" class="speakers-section text-white">
+        <div class="container">
+          <div class="text-center mb-5" data-aos="zoom-in">
+            <h2 class="section-title h1 text-dark">特邀講者</h2>
+            <p class="text-muted">來自全球的頂尖專家</p>
+          </div>
+
+          <div id="speakerCarousel" class="carousel slide" data-bs-ride="carousel" data-aos="fade-up">
+            <div class="speaker-card mx-auto col-lg-8 text-center shadow-lg">
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=250&h=250&auto=format&fit=crop" class="speaker-img mb-3" alt="Alex">
+                  <h3 class="fw-bold">Alex Chen</h3>
+                  <p class="text-primary fw-bold mb-3">Frontend Lead @ Google</p>
+                  <p class="fs-6 fst-italic text-white-75">"專注於效能優化與大型架構設計，相信代碼的簡潔即是美。"</p>
+                </div>
+                <div class="carousel-item">
+                  <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=250&h=250&auto=format&fit=crop" class="speaker-img mb-3" alt="Sarah">
+                  <h3 class="fw-bold">Sarah Lin</h3>
+                  <p class="text-primary fw-bold mb-3">UX Design Director</p>
+                  <p class="fs-6 fst-italic text-white-75">"設計不只是外觀的裝飾，更是解決問題的核心思維。"</p>
+                </div>
+                <div class="carousel-item">
+                  <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=250&h=250&auto=format&fit=crop" class="speaker-img mb-3" alt="David">
+                  <h3 class="fw-bold">David Wu</h3>
+                  <p class="text-primary fw-bold mb-3">Open Source Contributor</p>
+                  <p class="fs-6 fst-italic text-white-75">"致力於讓前後端整合更加流暢，推動開源文化的普及。"</p>
+                </div>
+              </div>
+
+              <button class="carousel-control-prev" type="button" data-bs-target="#speakerCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+              </button>
+              <button class="carousel-control-next" type="button" data-bs-target="#speakerCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="info" class="section-padding bg-transparent py-5">
+        <div class="container">
+          <div class="row align-items-center">
+            <div class="col-lg-5 mb-5 mb-lg-0" data-aos="fade-right">
+              <h2 class="section-title h1">活動資訊</h2>
+
+              <div class="info-list">
+                <div class="info-list-item">
+                  <div class="info-icon-wrapper">
+                    <i class="bi bi-geo-alt-fill"></i>
+                  </div>
+                  <div>
+                    <h5 class="fw-bold mb-1">地點 Location</h5>
+                    <p class="mb-0 text-muted">台北國際會議中心 (TICC) 101 會議室</p>
+                  </div>
+                </div>
+
+                <div class="info-list-item">
+                  <div class="info-icon-wrapper">
+                    <i class="bi bi-train-front-fill"></i>
+                  </div>
+                  <div>
+                    <h5 class="fw-bold mb-1">交通 Transport</h5>
+                    <p class="mb-0 text-muted">捷運淡水信義線「台北101/世貿站」1號出口步行 3 分鐘。</p>
+                  </div>
+                </div>
+
+                <div class="info-list-item">
+                  <div class="info-icon-wrapper">
+                    <i class="bi bi-houses-fill"></i>
+                  </div>
+                  <div>
+                    <h5 class="fw-bold mb-1">住宿 Accommodation</h5>
+                    <p class="mb-0 text-muted">憑大會票根，入住君悅酒店享有 85 折優惠。</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-7" data-aos="fade-left">
+              <div class="ratio ratio-16x9 rounded-4 shadow overflow-hidden">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3615.0027468962646!2d121.55983737605058!3d25.03398083829497!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442abb6da80a7ad%3A0xacc4d11dc963103c!2z5Y-w5YyX5ZyL6aqb5pyD6K2w5Lit5b-D!5e0!3m2!1szh-TW!2stw!4v1709620000000!5m2!1szh-TW!2stw" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="section-padding py-5">
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-lg-8" data-aos="zoom-in-up">
+              <div class="card border-0 shadow-lg p-5 rounded-4">
+                <div class="text-center mb-4">
+                  <h2 class="fw-bold">聯絡我們</h2>
+                  <p class="text-muted">有任何問題？歡迎隨時與我們聯繫</p>
+                </div>
+                <form>
+                  <div class="row">
+                    <div class="col-md-6 mb-3">
+                      <label for="name" class="form-label fw-bold">姓名</label>
+                      <input type="text" class="form-control form-control-lg" id="name" placeholder="您的稱呼">
+                    </div>
+                    <div class="col-md-6 mb-3">
+                      <label for="email" class="form-label fw-bold">電子郵件</label>
+                      <input type="email" class="form-control form-control-lg" id="email" placeholder="name@example.com">
+                    </div>
+                  </div>
+                  <div class="mb-4">
+                    <label for="message" class="form-label fw-bold">留言內容</label>
+                    <textarea class="form-control form-control-lg" id="message" rows="5" placeholder="請輸入您的訊息..."></textarea>
+                  </div>
+                  <div class="d-grid">
+                    <button type="submit" class="btn btn-gradient btn-lg rounded-pill">送出訊息</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="pt-5">
+      <div class="container">
+        <div class="row gy-4">
+          <div class="col-md-4 text-center text-md-start">
+            <h4 class="fw-bold mb-2"><i class="bi bi-cpu-fill me-2"></i>Tech Summit</h4>
+            <p class="text-muted small">致力於連結開發者社群，推動技術創新的年度盛會。</p>
+          </div>
+          <div class="col-md-4 text-center">
+            <h5 class="fw-bold mb-2">快速連結</h5>
+            <ul class="list-unstyled small mb-0">
+              <li><a href="#agenda">大會議程</a></li>
+              <li><a href="#speakers">特邀講者</a></li>
+              <li><a href="#contact">聯絡我們</a></li>
+            </ul>
+          </div>
+          <div class="col-md-4 text-center text-md-end">
+            <h5 class="fw-bold mb-2">關注我們</h5>
+            <div class="d-flex justify-content-center justify-content-md-end gap-3">
+              <a href="#" class="fs-5"><i class="bi bi-facebook"></i></a>
+              <a href="#" class="fs-5"><i class="bi bi-twitter-x"></i></a>
+              <a href="#" class="fs-5"><i class="bi bi-instagram"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <hr class="my-4">
+        <div class="text-center small text-muted">
+          &copy; 2025 Tech Summit. Design by Bootstrap 5.
+        </div>
+      </div>
+    </footer>
+
+    <!-- Bootstrap JS bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      AOS.init({
+        duration: 700,
+        once: true,
+        easing: 'ease-in-out',
+        offset: 100
+      });
+    </script>
+
+  </body>
+</html>
