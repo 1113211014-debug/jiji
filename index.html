@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <title>清晰日期時鐘</title>
+    <style>
+        body {
+            background-color: #000000; /* 深黑色背景讓對比更高 */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif; /* 使用標準無襯線字體，易讀性最高 */
+            color: #ffffff;
+        }
+        .container {
+            text-align: center;
+        }
+        #clock {
+            font-size: 10rem; /* 時間加大 */
+            font-weight: 900;
+            color: #00ffcc; 
+            line-height: 1;
+            margin-bottom: 20px;
+        }
+        #date {
+            font-size: 4rem; /* 日期大幅加大 */
+            font-weight: 700;
+            color: #ffffff; /* 使用純白色，最清楚 */
+            letter-spacing: 2px;
+            border-top: 2px solid #444; /* 加上一條分隔線 */
+            padding-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div id="clock">00:00:00</div>
+        <div id="date">2026年03月03日 星期二</div>
+    </div>
+
+    <script>
+        function updateClock() {
+            const now = new Date();
+            
+            // 時間處理
+            const h = String(now.getHours()).padStart(2, '0');
+            const m = String(now.getMinutes()).padStart(2, '0');
+            const s = String(now.getSeconds()).padStart(2, '0');
+            
+            // 日期處理
+            const y = now.getFullYear();
+            const mo = String(now.getMonth() + 1).padStart(2, '0');
+            const d = String(now.getDate()).padStart(2, '0');
+            const days = ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"];
+            const dayName = days[now.getDay()];
+
+            document.getElementById('clock').textContent = `${h}:${m}:${s}`;
+            document.getElementById('date').textContent = `${y}年${mo}月${d}日 ${dayName}`;
+        }
+
+        setInterval(updateClock, 1000);
+        updateClock();
+    </script>
+</body>
+</html>
